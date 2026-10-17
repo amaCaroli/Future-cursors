@@ -1,20 +1,28 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -Eeuo pipefail
 
-ROOT_UID=0
-DEST_DIR=
-
-# Destination directory
-if [ "$UID" -eq "$ROOT_UID" ]; then
+ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+if [[ "$EUID" -eq 0 ]]; then
   DEST_DIR="/usr/share/icons"
 else
-  DEST_DIR="$HOME/.local/share/icons"
+  DEST_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/icons"
 fi
 
-if [ -d "$DEST_DIR/Future-cursors" ]; then
-  rm -r "$DEST_DIR/Future-cursors"
-fi
+for theme_dir in dist dist-cyan; do
+  if [[ ! -f "$ROOT/$theme_dir/index.theme" || ! -d "$ROOT/$theme_dir/cursors_scalable" ]]; then
+    echo "ERROR: $theme_dir is missing or incomplete. Run ./build-gnome51.sh first." >&2
+    exit 2
+  fi
+done
 
-cp -pr dist $DEST_DIR/Future-cursors
+mkdir -p "$DEST_DIR"
+for item in "Future-cursors:dist" "Future-cursors-cyan:dist-cyan"; do
+  theme_name="${item%%:*}"
+  source_dir="${item#*:}"
+  rm -rf -- "$DEST_DIR/$theme_name"
+  cp -a -- "$ROOT/$source_dir" "$DEST_DIR/$theme_name"
+  echo "Installed $theme_name -> $DEST_DIR/$theme_name"
+done
 
-echo "Finished..."
-
+echo
+echo "Select 'Future-cursors' or 'Future-cursors-cyan' in GNOME Tweaks or your desktop's cursor-theme settings."

@@ -1,3 +1,4 @@
 [Icon Theme]
-Name=Future Cursors
 
+Name=Future Cursors
+Inherits=Adwaita
