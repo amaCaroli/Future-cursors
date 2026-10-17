@@ -45,8 +45,8 @@ Em outras distribuições, instale os pacotes equivalentes pelo gerenciador de p
 Execute os comandos a partir da raiz do repositório:
 
 ```bash
-chmod +x build-gnome51.sh install-gnome51.sh
-./build-gnome51.sh
+chmod +x build.sh install.sh
+./build.sh
 ```
 
 O script de compilação:
@@ -58,14 +58,12 @@ O script de compilação:
 
 Ao final de uma compilação bem-sucedida, as pastas `dist/` e `dist-cyan/` devem conter `index.theme`, `cursors/` e `cursors_scalable/`.
 
-O comando original `./build.sh` continua disponível caso você queira gerar apenas o tema Xcursor tradicional. O `./install.sh` original instala somente a variante padrão; para instalar as duas, use `install-gnome51.sh`.
-
 ## Instalação
 
 ### Instalar apenas para o usuário atual (recomendado)
 
 ```bash
-./install-gnome51.sh
+./install.sh
 ```
 
 Os temas serão instalados em `${XDG_DATA_HOME:-$HOME/.local/share}/icons/`.
@@ -73,7 +71,7 @@ Os temas serão instalados em `${XDG_DATA_HOME:-$HOME/.local/share}/icons/`.
 ### Instalar para todos os usuários
 
 ```bash
-sudo ./install-gnome51.sh
+sudo ./install.sh
 ```
 
 Os temas serão instalados em `/usr/share/icons/`. O instalador substitui as cópias já existentes de `Future-cursors` e `Future-cursors-cyan` no destino selecionado.
@@ -148,8 +146,8 @@ On other distributions, install the equivalent packages using your package manag
 Run these commands from the repository root:
 
 ```bash
-chmod +x build-gnome51.sh install-gnome51.sh
-./build-gnome51.sh
+chmod +x build.sh install.sh
+./build.sh
 ```
 
 The build script:
@@ -161,14 +159,12 @@ The build script:
 
 Successful output should leave both `dist/` and `dist-cyan/` with an `index.theme`, a `cursors/` directory, and a `cursors_scalable/` directory.
 
-The original `./build.sh` remains available if you only need the original Xcursor build. The original `./install.sh` installs only the default theme; use `install-gnome51.sh` to install both variants.
-
 ## Install the themes
 
 ### Install for the current user (recommended)
 
 ```bash
-./install-gnome51.sh
+./install.sh
 ```
 
 The themes are installed to `${XDG_DATA_HOME:-$HOME/.local/share}/icons/`.
@@ -176,7 +172,7 @@ The themes are installed to `${XDG_DATA_HOME:-$HOME/.local/share}/icons/`.
 ### Install system-wide
 
 ```bash
-sudo ./install-gnome51.sh
+sudo ./install.sh
 ```
 
 The themes are installed to `/usr/share/icons/`. The installation script replaces existing installed copies of `Future-cursors` and `Future-cursors-cyan` in the selected destination.
